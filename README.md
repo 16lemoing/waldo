@@ -120,7 +120,7 @@ We provide [test data](https://drive.google.com/file/d/1y51OtU20OlYg7DwPGAEsZwkW
 bash scripts/kitti/test.sh 2022-05-16-12:13:05-train_lvd_kitti 2022-05-18-07:57:54-train_flp_kitti 2022-05-18-08:07:27-train_wif_kitti
 ```
 
-Please note that we disabled adversarial inpainting (using MAT) in `test.sh` since it has little to no impact to quantitative results. If you wish to use it, you can run `test_mat.sh`.
+Please note that we disabled adversarial inpainting (using [MAT](https://github.com/fenglinglwb/MAT)) in `test.sh` since it has little to no impact to quantitative results. If you wish to use it, you can run `test_mat.sh`.
 
 **2 - Metrics**
 
