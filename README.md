@@ -78,25 +78,6 @@ bash scripts/kitti/train_wif.sh LVD_TAG
 
 Checkpoints are saved in `checkpoints/`, with corresponding tag `WIF_TAG`.
 
-## Evaluation
-
-**1 - Inference**
-
-```
-bash scripts/cityscapes/test.sh LVD_TAG FLP_TAG WIF_TAG
-bash scripts/kitti/test.sh LVD_TAG FLP_TAG WIF_TAG
-```
-
-Videos are saved in `results/`, with corresponding tag `VID_TAG`.
-
-**2 - Metrics**
-
-```
-python tools/eval/metrics.py VID_TAG VID_LENGTH VID_CONTEXT
-```
-
-Set `VID_LENGTH` to the length of video sequences (typically, 14 for Cityscapes and 9 for KITTI) and `VID_CONTEXT` to the number of past context frames (typically, 4).
-
 ## Demo
 
 <p align="center"><img width="85%" src="assets/demo.gif" /></p>
@@ -105,7 +86,7 @@ Set `VID_LENGTH` to the length of video sequences (typically, 14 for Cityscapes 
 
 Save [demo data](https://drive.google.com/file/d/1ApKhAwhGFHyAfKw2UG6F8UJfi-q6g-wK/view?usp=sharing) in the root folder and then extract:
 ```
-unzip datasets.zip
+unzip demo_datasets.zip
 ```
 
 **2 - Download checkpoints**
@@ -122,6 +103,33 @@ bash scripts/cityscapes/demo.sh
 bash scripts/kitti/demo.sh
 ```
 Videos are saved in `results/`.
+
+## Evaluation
+
+**1 - Inference**
+
+```
+bash scripts/cityscapes/test.sh LVD_TAG FLP_TAG WIF_TAG
+bash scripts/kitti/test.sh LVD_TAG FLP_TAG WIF_TAG
+```
+
+Videos are saved in `results/`, with corresponding tag `VID_TAG`.
+
+We provide [test data](https://drive.google.com/file/d/1y51OtU20OlYg7DwPGAEsZwkW8S7zPSQA/view?usp=sharing) for KITTI which can be used to reproduce the results from the paper using the pretrained checkpoints by running:
+```
+bash scripts/kitti/test.sh 2022-05-16-12:13:05-train_lvd_kitti 2022-05-18-07:57:54-train_flp_kitti 2022-05-18-08:07:27-train_wif_kitti
+```
+
+Please note that we disabled adversarial inpainting (using MAT) in `test.sh` since it has little to no impact to quantitative results. If you wish to use it, you can run `test_mat.sh`.
+
+**2 - Metrics**
+
+```
+python tools/eval/metrics.py VID_TAG VID_LENGTH VID_CONTEXT
+```
+
+Set `VID_LENGTH` to the length of video sequences (typically, 14 for Cityscapes and 9 for KITTI) and `VID_CONTEXT` to the number of past context frames (typically, 4).
+
 
 ## Citation
 

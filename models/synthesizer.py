@@ -39,6 +39,7 @@ class Synthesizer(torch.nn.Module):
         self.lpips_vgg = None
         self.nancount = 0
 
+        self.inpainter = None
         if opt.use_inpainter:
             self.inpainter = MatInpainter(opt).cuda()
 

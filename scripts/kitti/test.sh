@@ -37,7 +37,7 @@ CUDA_VISIBLE_DEVICES=${GPU_IDS} python -m ${TORCHRUN} helpers/synthesizer_evalua
  --s_ctx_mode "prev" --s_ii_score --s_ii_ab \
  --s_edge_size 15 --s_flow_thresh 0.02 --s_bg_mul 1.2 \
  --s_unconstrained_pose_decoder --s_lambda_rec_occ_score 0.01 \
- --s_oe_num_timesteps 5 --s_pg_num_timesteps 14 \
+ --s_oe_num_timesteps 5 --s_pg_num_timesteps 10 \
  --s_ii_depth 6 \
  --s_ii_iter "latest" --s_ii_load_path "checkpoints/"${WIF_TAG} \
  --s_pg_iter "latest" --s_pg_load_path "checkpoints/"${FLP_TAG} \
