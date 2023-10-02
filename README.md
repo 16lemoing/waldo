@@ -115,8 +115,9 @@ bash scripts/kitti/test.sh LVD_TAG FLP_TAG WIF_TAG
 
 Videos are saved in `results/`, with corresponding tag `VID_TAG`.
 
-We provide [test data](https://drive.google.com/file/d/1y51OtU20OlYg7DwPGAEsZwkW8S7zPSQA/view?usp=sharing) for KITTI which can be used to reproduce the results from the paper using the pretrained checkpoints by running:
+We provide prepocessed test data for [Cityscapes](https://drive.google.com/file/d/1kcn0d1SRimRaZV9effhV3_2dChV8OIyw/view?usp=sharing) and [KITTI](https://drive.google.com/file/d/1y51OtU20OlYg7DwPGAEsZwkW8S7zPSQA/view?usp=sharing) which can be used to reproduce the results from the paper using the pretrained checkpoints by running:
 ```
+bash scripts/cityscapes/test.sh 2022-05-16-12:10:29-train_lvd_cityscapes 2022-05-17-10:46:43-train_flp_cityscapes 2022-05-18-18:39:55-train_wif_cityscapes
 bash scripts/kitti/test.sh 2022-05-16-12:13:05-train_lvd_kitti 2022-05-18-07:57:54-train_flp_kitti 2022-05-18-08:07:27-train_wif_kitti
 ```
 
