@@ -250,8 +250,8 @@ class BaseDataset(data.Dataset):
         else:
             if self.load_vid:
                 frame_paths = self.data['vid_frame_paths'][index]
-                # if self.opt.skip_first:
-                #     frame_paths = frame_paths[1:]
+                if self.opt.skip_first:
+                    frame_paths = frame_paths[1:]
                 frames_per_clip = self.opt.load_vid_len if self.opt.load_vid_len is not None else self.opt.vid_len
                 assert len(frame_paths) >= frames_per_clip, f"{frame_paths}, {frames_per_clip}"
                 idx = random.randrange(len(frame_paths) - ((frames_per_clip - 1) * self.opt.one_every_n) - 1) if self.phase == "train" else 0
