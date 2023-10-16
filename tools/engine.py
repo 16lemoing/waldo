@@ -17,36 +17,16 @@ class Engine(object):
         self.opt = opt
 
         # multi node mode on slurm cluster
-        # if 'SLURM_JOB_NUM_NODES' in os.environ and int(os.environ['SLURM_JOB_NUM_NODES']) >= 1:
-
-        # number of nodes / node ID
-        node_id = int(os.environ['SLURM_NODEID'])
-        n_nodes = int(os.environ['SLURM_JOB_NUM_NODES'])
-
-        # get slurm variables
-        self.global_rank = int(os.environ['RANK'])
-        # self.global_rank = int(os.environ['LOCAL_RANK']) + len(self.opt.gpu_ids) * node_id
-        # world_size = len(self.opt.gpu_ids) * n_nodes
-
-        # get node list from slurm
-        # hostnames = hostlist.expand_hostlist(os.environ['SLURM_JOB_NODELIST'])
-
-        # define MASTER_ADD, MASTER_PORT, WORLD_SIZE & RANK
-        # os.environ['MASTER_ADDR'] = hostnames[0]
-        # seed = random.randrange(9000) if opt.seed is None else opt.seed # to avoid port conflict on the same node
-        # os.environ['MASTER_PORT'] = str(10500 + seed)
-        # os.environ['WORLD_SIZE'] = str(world_size)
-        # os.environ['RANK'] = str(self.global_rank)
-        # print(os.environ['MASTER_ADDR'], os.environ['MASTER_PORT'], os.environ['WORLD_SIZE'], os.environ['RANK'])
-
-        # else:
-        #     node_id = 0
-        #     n_nodes = 1
-        #     self.global_rank = self.opt.local_rank
+        if 'SLURM_JOB_NUM_NODES' in os.environ:
+	    node_id = int(os.environ['SLURM_NODEID'])
+	    n_nodes = int(os.environ['SLURM_JOB_NUM_NODES'])
+            self.global_rank = int(os.environ['RANK'])
+        else:
+            node_id = 0
+            n_nodes = 1
+            self.global_rank = self.opt.local_rank
 
         self.distributed = True
-        # if 'WORLD_SIZE' in os.environ:
-        #     self.distributed = int(os.environ['WORLD_SIZE']) > 1
 
         if self.distributed:
             self.local_rank = int(os.environ['LOCAL_RANK'])
