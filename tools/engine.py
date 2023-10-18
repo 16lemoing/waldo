@@ -24,7 +24,7 @@ class Engine(object):
         else:
             node_id = 0
             n_nodes = 1
-            self.global_rank = self.opt.local_rank
+            self.global_rank = int(os.environ['LOCAL_RANK'])
 
         self.distributed = True
 
