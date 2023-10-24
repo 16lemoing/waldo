@@ -13,7 +13,6 @@ warnings.filterwarnings("ignore")
 from tools.options import Options
 from tools.engine import Engine
 from tools.logger import Logger
-from tools.fid.fid_score import compute_fid_from_folder
 from tools.utils import mkdir, dappend
 from models.synthesizer import Synthesizer
 from helpers import Helper
@@ -89,13 +88,6 @@ class SynthesizerTrainer(Helper):
                                 break
                         self.reinit_batches(self.valid_img_data_info)
                         img_metrics = {k: torch.stack(v).mean() for k, v in img_metrics.items()}
-                        if is_main and self.opt.compute_fid:
-                            batch_size = self.valid_img_data_info["batch_size_per_gpu"]
-                            fid, num_fid = compute_fid_from_folder(self.opt.result_path,
-                                                                   f"real_{self.opt.img_modes[0]}",
-                                                                   f"fake_{self.opt.img_modes[0]}",
-                                                                   self.opt.num_workers, batch_size)
-                            img_metrics[f"fid{num_fid}"] = fid
 
                     vid_metrics = {}
                     if 'None' not in self.opt.vid_modes:
